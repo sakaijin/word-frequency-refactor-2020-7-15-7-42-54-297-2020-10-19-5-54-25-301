@@ -9,7 +9,7 @@ public class WordFrequencyGame {
             return inputStr + " 1";
         } else {
             try {
-                Map<String, List<Input>> wordMap = getListMap(getWordFrequency(inputStr));
+                Map<String, List<Input>> wordMap = generateWordMap(getWordFrequency(inputStr));
                 List<Input> inputList = simplifyWordFrequency(wordMap);
                 sortWordFrequencyDescending(inputList);
                 return formatResults(inputList);
@@ -51,20 +51,19 @@ public class WordFrequencyGame {
         return results.toString();
     }
 
-
-    private Map<String,List<Input>> getListMap(List<Input> inputList) {
-        Map<String, List<Input>> map = new HashMap<>();
-        for (Input input :  inputList){
-            if (!map.containsKey(input.getWord())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getWord(), arr);
+    private Map<String,List<Input>> generateWordMap(List<Input> inputList) {
+        Map<String, List<Input>> wordMap = new HashMap<>();
+        for (Input input : inputList){
+            if (!wordMap.containsKey(input.getWord())){
+                ArrayList wordFrequency = new ArrayList<>();
+                wordFrequency.add(input);
+                wordMap.put(input.getWord(), wordFrequency);
             }
             else {
-                map.get(input.getWord()).add(input);
+                wordMap.get(input.getWord()).add(input);
             }
         }
-        return map;
+        return wordMap;
     }
 
 
