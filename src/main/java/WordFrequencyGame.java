@@ -25,16 +25,20 @@ public class WordFrequencyGame {
                 }
                 inputs = inputList;
                 inputs.sort((word1, word2) -> word2.getFrequency() - word1.getFrequency());
-                StringJoiner results = new StringJoiner("\n");
-                for (Input input : inputs) {
-                    String result = input.getWord() + " " +input.getFrequency();
-                    results.add(result);
-                }
-                return results.toString();
+                return formatResults(inputs);
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
+    }
+
+    private String formatResults(List<Input> inputs) {
+        StringJoiner results = new StringJoiner("\n");
+        for (Input input : inputs) {
+            String result = input.getWord() + " " +input.getFrequency();
+            results.add(result);
+        }
+        return results.toString();
     }
 
 
