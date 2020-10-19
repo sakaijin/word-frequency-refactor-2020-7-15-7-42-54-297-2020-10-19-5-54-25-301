@@ -24,12 +24,16 @@ public class WordFrequencyGame {
                     inputList.add(input);
                 }
                 inputs = inputList;
-                inputs.sort((word1, word2) -> word2.getFrequency() - word1.getFrequency());
+                sortWordFrequencyDescending(inputs);
                 return formatResults(inputs);
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
+    }
+
+    private void sortWordFrequencyDescending(List<Input> inputs) {
+        inputs.sort((word1, word2) -> word2.getFrequency() - word1.getFrequency());
     }
 
     private String formatResults(List<Input> inputs) {
